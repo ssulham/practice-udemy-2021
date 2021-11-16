@@ -6,5 +6,12 @@
 </div>
 <div class="container">
     <p>Get customized Welcome Message</p>
-    <button class="btn btn-primary" (click) = "getWelcomeMessage()">Get Welcome Message</button>
+    <button class="btn btn-primary" (click) = "getPersonalizedWelcomeMessage()">Get Welcome Message</button>
+</div>
+<div class="container" *ngIf = "welcomeMessage">
+    <h2>Here is your customized Welcome Message</h2>
+    {{welcomeMessage | titlecase}}
+</div>
+<div class="container" *ngIf = "errorMessage" id="errorMessage">
+    {{errorMessage}}
 </div>
