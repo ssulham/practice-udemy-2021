@@ -21,9 +21,9 @@ export class TodoDataService {
   }
 
   // Method to update a todo
-  // updateTodo(username: string, id: number) {
-  //   return this.http.put<Todo>(`http://localhost:8080/users/${username}/todos/${id}`);
-  // }
+  updateTodo(username: string, id: number, todo: Todo) {
+    return this.http.put(`http://localhost:8080/users/${username}/todos/${id}`, todo);
+  }
 
   // Method to delete a todo
   deleteTodo(username: string, id: number) {

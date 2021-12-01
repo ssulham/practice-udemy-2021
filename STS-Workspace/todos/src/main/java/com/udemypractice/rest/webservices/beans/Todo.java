@@ -13,7 +13,12 @@ public class Todo {
 	private Date targetDate;
 	
 	// Constructors
+	public Todo() {
+		// No Args Constructor
+	}
+	
 	public Todo(long id, String username, String description, boolean completed, Date targetDate) {
+		// Full Args Constructor
 		super();
 		this.id = id;
 		this.username = username;
