@@ -1,5 +1,6 @@
 package com.udemypractice.rest.webservices.controllers;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.udemypractice.rest.webservices.beans.Todo;
 import com.udemypractice.rest.webservices.services.TodoHardcodedService;
@@ -34,11 +36,14 @@ public class TodoController {
 		return todoService.findById(id);
 	}
 	
-	// POST /users/{username}/todos
 	@PostMapping(path = "/users/{username}/todos")
-	//More to come...
+	public ResponseEntity<Void> addTodo(@PathVariable String username, @RequestBody Todo todo) {
+		Todo createdTodo = todoService.save(todo);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+			.buildAndExpand(createdTodo.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
 	
-	// PUT /users/{username}/todos/{todo}
 	@PutMapping(path = "/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(
 			@PathVariable String username, 
@@ -48,7 +53,6 @@ public class TodoController {
 		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	}
 	
-	// DELETE /users/{username}/todos/{todo}
 	@DeleteMapping(path = "/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id) {
 		Todo todo = todoService.deleteById(id);

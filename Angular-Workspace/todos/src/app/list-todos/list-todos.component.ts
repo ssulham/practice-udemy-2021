@@ -38,7 +38,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   update(id: number) {
-    console.log(`To Do Item ${id} Updated.`);
+    console.log(`Updateing To Do Item ${id}...`);
     this.router.navigate(['updateTodo', id]);
   }
 
