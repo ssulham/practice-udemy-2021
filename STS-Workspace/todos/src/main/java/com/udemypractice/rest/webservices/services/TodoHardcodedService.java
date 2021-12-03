@@ -48,10 +48,22 @@ public class TodoHardcodedService {
 		Todo todo = findById(id);
 		if (todo != null) {
 			todos.remove(todo);
+			// If there are remaining todos at higher id values, move all of them down one to fill in 
+			// the gap
+//			shiftIds(id);
 			return todo;
 		} else {
 			return null;
 		}
 	}
+	
+//	public void shiftIds(long id) {
+//		long n = id;
+//		while (n < todos.size()) {
+//			findById(n).setId(--n);
+//			n++;
+//		}
+//		idCounter--;
+//	}
 
 }
