@@ -21,17 +21,30 @@ export class UpdateTodoComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.todo = new Todo(0, "Loading...", false, new Date());
-    this.todoService.retrieveTodo('zexl', this.id).subscribe(
-      data => this.todo = data
-    )
+    if(this.id!=-1) {
+      this.todo = new Todo(this.id, "Loading...", false, new Date());
+      this.todoService.retrieveTodo('zexl', this.id).subscribe(
+        data => this.todo = data
+      )
+    } else {
+      this.todo = new Todo(this.id, "Enter To Do List Item", false, new Date());
+    }
   }
 
   saveTodo() {
-    this.todoService.updateTodo('zexl', this.id, this.todo).subscribe(
-      data => console.log(data)
-    )
-    this.router.navigate(['listTodos']);
+    if(this.id == -1) {
+      // Create Todo
+      this.todoService.createTodo('zexl', this.todo).subscribe(
+        data => console.log(data)
+      )
+      this.router.navigate(['listTodos']);
+    } else {
+      // Update Todo
+      this.todoService.updateTodo('zexl', this.id, this.todo).subscribe(
+        data => console.log(data)
+      )
+      this.router.navigate(['listTodos']);
+    }
     
   }
 

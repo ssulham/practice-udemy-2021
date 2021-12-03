@@ -37,6 +37,12 @@ export class ListTodosComponent implements OnInit {
     )
   }
 
+  add() {
+    console.log("Adding To Do List Item...");
+    this.router.navigate(['updateTodo', -1]);
+    // this.refreshTodos();
+  }
+
   update(id: number) {
     console.log(`Updateing To Do Item ${id}...`);
     this.router.navigate(['updateTodo', id]);
