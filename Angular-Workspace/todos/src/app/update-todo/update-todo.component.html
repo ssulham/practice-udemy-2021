@@ -1,5 +1,6 @@
 <h1>To Do List Item</h1>
 <div class="container">
+    <div class="alert alert-warning" *ngIf="todoForm.invalid">Please enter valid Description and Target Date.</div>
     <form (ngSubmit) = "!todoForm.invalid && saveTodo()" #todoForm="ngForm">
         <fieldset class="form-group">
             <label>Description</label>
