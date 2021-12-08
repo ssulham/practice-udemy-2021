@@ -4,7 +4,7 @@
         <small>{{errorMessage}}</small>
     </div>
     <div>
-        <form (ngSubmit) = "handleLogin()">
+        <form (ngSubmit) = "handleBasicAuthLogin()">
             Username: <input type="text" name="username" [(ngModel)]="username">
             Password: <input type="password" name="password" [(ngModel)]="password">
 
