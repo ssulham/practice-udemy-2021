@@ -22,4 +22,9 @@ describe('ErrorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display message', () => {
+    expect(component.errorMessage).toEqual("An error has occurred...");
+  })
+
 });
